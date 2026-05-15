@@ -1,0 +1,6 @@
+# Core runtime intentionally uses the Python standard library.
+# Install optional extras as needed:
+#   pip install -e ".[render]"
+#   pip install -e ".[google]"
+#   pip install -e ".[report]"
+#   pip install -e ".[dev]"

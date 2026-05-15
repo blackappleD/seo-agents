@@ -1,0 +1,38 @@
+[project]
+name = "seo-agents"
+version = "0.1.0"
+description = "Agent-first SEO audit toolkit with a deterministic CLI core"
+requires-python = ">=3.10"
+license = "MIT"
+readme = "README.md"
+keywords = ["seo", "technical-seo", "schema", "core-web-vitals", "geo", "agent"]
+authors = [{ name = "seo-agents contributors" }]
+dependencies = []
+
+[project.optional-dependencies]
+render = ["playwright>=1.44"]
+google = [
+  "google-api-python-client>=2.0",
+  "google-auth>=2.0",
+  "google-analytics-data>=0.18",
+]
+report = ["openpyxl>=3.1", "matplotlib>=3.8", "weasyprint>=61"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+seo-agents = "seo_agents.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

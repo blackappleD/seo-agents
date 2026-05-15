@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-tmp/
+.pytest-runs/
+.test-artifacts/
+diagnostic_tmp_dir/
+diagnostic_tmp_write.txt
+tmp_pytest/
+pytest_tmp_manual/
+.ruff_cache/
+.venv/
+build/
+dist/
+*.egg-info/
+/*-audit/

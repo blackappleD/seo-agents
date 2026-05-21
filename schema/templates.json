@@ -1,0 +1,62 @@
+{
+  "Organization": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "",
+    "url": "",
+    "logo": "",
+    "sameAs": []
+  },
+  "WebSite": {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "",
+    "url": ""
+  },
+  "WebPage": {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "",
+    "url": "",
+    "description": ""
+  },
+  "Article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "",
+    "author": "",
+    "datePublished": "",
+    "dateModified": ""
+  },
+  "BreadcrumbList": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": []
+  },
+  "Product": {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "",
+    "image": [],
+    "description": "",
+    "offers": {
+      "@type": "Offer",
+      "price": "",
+      "priceCurrency": "",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  "LocalBusiness": {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "",
+    "address": "",
+    "telephone": "",
+    "openingHours": []
+  },
+  "FAQPage": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  }
+}

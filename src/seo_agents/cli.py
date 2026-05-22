@@ -12,6 +12,7 @@ from seo_agents.fetch.http import fetch_url
 from seo_agents.fetch.render import render_page
 from seo_agents.models import to_plain
 from seo_agents.modules.content import analyze_content
+from seo_agents.modules.dataforseo import run_dataforseo_command
 from seo_agents.modules.drift import compare_to_baseline, create_baseline, history
 from seo_agents.modules.ecommerce import analyze_ecommerce
 from seo_agents.modules.external import offline_placeholder
@@ -139,12 +140,26 @@ def build_parser() -> argparse.ArgumentParser:
     drift_history.add_argument("--json", action="store_true")
     drift_history.set_defaults(handler=_handle_drift_history)
 
-    for provider in ["google", "backlinks", "dataforseo", "firecrawl"]:
+    for provider in ["google", "backlinks", "firecrawl"]:
         provider_parser = sub.add_parser(provider, help=f"{provider} 离线配置检测命令")
         provider_parser.add_argument("subcommand", nargs="?")
         provider_parser.add_argument("target", nargs="?")
         provider_parser.add_argument("--json", action="store_true")
         provider_parser.set_defaults(handler=_handle_external, provider=provider)
+
+    dataforseo = sub.add_parser("dataforseo", help="DataForSEO 真实 API 调用，或显式离线配置检测")
+    dataforseo.add_argument("subcommand", nargs="?", default="setup")
+    dataforseo.add_argument("target", nargs="*")
+    dataforseo.add_argument("--offline", action="store_true", help="只检测配置，不调用真实 DataForSEO API")
+    dataforseo.add_argument("--location-code", type=int, default=2840)
+    dataforseo.add_argument("--language-code", default="en")
+    dataforseo.add_argument("--depth", type=int, default=10)
+    dataforseo.add_argument("--device", choices=["desktop", "mobile"], default="desktop")
+    dataforseo.add_argument("--limit", type=int, default=10)
+    dataforseo.add_argument("--timeout", type=int, default=30)
+    dataforseo.add_argument("--include-raw", action="store_true", help="JSON 输出包含脱敏后的原始 API 响应")
+    dataforseo.add_argument("--json", action="store_true")
+    dataforseo.set_defaults(handler=_handle_dataforseo)
 
     audit = sub.add_parser("audit", help="运行全站审计并写入 artifact")
     audit.add_argument("url")
@@ -262,6 +277,28 @@ def _handle_external(args: argparse.Namespace) -> int:
     return _emit_analysis(data, args.json)
 
 
+def _handle_dataforseo(args: argparse.Namespace) -> int:
+    target = " ".join(args.target).strip() if isinstance(args.target, list) else args.target
+    data = run_dataforseo_command(
+        args.subcommand,
+        target or None,
+        offline=args.offline,
+        location_code=args.location_code,
+        language_code=args.language_code,
+        depth=args.depth,
+        device=args.device,
+        limit=args.limit,
+        include_raw=args.include_raw,
+        timeout=args.timeout,
+    )
+    _emit_analysis(data, args.json)
+    if not args.offline and data.get("status") not in {"ok"}:
+        return 1
+    if data.get("mode") in {"invalid-arguments", "unsupported-command"}:
+        return 1
+    return 0
+
+
 def _handle_audit(args: argparse.Namespace) -> int:
     data = run_audit(args.url, max_pages=args.max_pages, output_dir=args.output_dir)
     if args.json:
@@ -287,7 +324,7 @@ def _emit_analysis(data: dict, as_json: bool) -> int:
         print(f"发现项：{len(data.get('findings', []))}")
         for item in data.get("findings", data.get("changes", []))[:10]:
             print(f"- [{item['severity']}] {item['title']}")
-        if data.get("mode") == "offline-placeholder":
+        if data.get("message"):
             print(data["message"])
     return 0
 

@@ -84,3 +84,46 @@ def test_cli_external_placeholder_is_offline(tmp_path) -> None:  # type: ignore[
     assert data["mode"] == "offline-placeholder"
     assert data["configured"] is False
     assert data["config"]["sources"]["config_file"]["path"].endswith("google-api.json")
+
+
+def test_cli_dataforseo_defaults_to_real_api_and_supports_offline(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    env = {**os.environ, "PYTHONPATH": str(ROOT / "src"), "PYTHONDONTWRITEBYTECODE": "1"}
+    for key in PROVIDER_ENV_KEYS:
+        env.pop(key, None)
+    env["SEO_AGENTS_CONFIG_DIR"] = str(tmp_path / "config")
+    env["SEO_AGENTS_CLAUDE_SETTINGS"] = str(tmp_path / "settings.json")
+
+    help_proc = subprocess.run(
+        [sys.executable, "-m", "seo_agents", "dataforseo", "--help"],
+        cwd=ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert "--offline" in help_proc.stdout
+    assert "--live" not in help_proc.stdout
+
+    default_proc = subprocess.run(
+        [sys.executable, "-m", "seo_agents", "dataforseo", "user-data", "--json"],
+        cwd=ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert default_proc.returncode == 1
+    default_data = json.loads(default_proc.stdout)
+    assert default_data["mode"] == "unavailable"
+    assert default_data["charged"] is False
+
+    offline_proc = subprocess.run(
+        [sys.executable, "-m", "seo_agents", "dataforseo", "setup", "--offline", "--json"],
+        cwd=ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    offline_data = json.loads(offline_proc.stdout)
+    assert offline_data["mode"] == "offline-placeholder"

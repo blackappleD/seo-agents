@@ -17,13 +17,14 @@
 
 - 中文语言规则、中文 AGENTS/README/skill/agent/CLI/report 文案。
 - content、geo、drift、hreflang、local、ecommerce 本地分析命令。
-- Google、Backlink、DataForSEO、Firecrawl 离线占位，只检测本机配置字段来源，不联网、不伪造数据。
+- Google、Backlink、Firecrawl 离线占位，只检测本机配置字段来源，不联网、不伪造数据。
+- DataForSEO 已支持默认真实接入的 user-data、SERP、related keywords、domain rank overview；`--offline` 仅做配置检测。
 - audit-data.json 聚合新增模块和外部数据源未配置提示。
 
 ## 仍未对齐的能力
 
 - 真实 Google API：PageSpeed Insights、CrUX、GSC、URL Inspection、Indexing API、GA4、Keyword Planner。
-- 真实外链数据：Moz、Bing Webmaster、Common Crawl、DataForSEO、Ahrefs 等。
+- 真实外链数据：Moz、Bing Webmaster、Common Crawl、Ahrefs 等；DataForSEO 已具备第一批 live 查询但尚未接入 audit 聚合。
 - 真实扩展安装器：DataForSEO、Firecrawl、Banana、Bing Webmaster、Ahrefs、SE Ranking、Profound、Unlighthouse。
 - PDF/XLSX 报告、图表、截图和视觉审计。
 - SERP-based cluster、SXO、content brief、programmatic SEO、competitor pages 的真实数据流。
@@ -32,4 +33,4 @@
 
 1. 先把本地模块的测试覆盖扩大到真实 HTML fixture。
 2. 再接 Google Tier 0：PageSpeed Insights 和 CrUX，保持无凭据降级。
-3. 最后做扩展安装器和付费 provider。
+3. 将 DataForSEO live 结果接入 audit 聚合，再做扩展安装器和其他付费 provider。

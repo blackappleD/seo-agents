@@ -23,15 +23,19 @@
 | `seo-agents drift compare <url>` | 与最近基线比较 |
 | `seo-agents drift history <url>` | 查看漂移历史 |
 | `seo-agents audit <url> --max-pages 20` | 聚合审计并写入 artifact |
+| `seo-agents dataforseo user-data --json` | DataForSEO 免费凭据/余额验证 |
+| `seo-agents dataforseo serp "keyword" --json` | DataForSEO Google SERP live 查询，会计费 |
+| `seo-agents dataforseo related-keywords "keyword" --json` | DataForSEO related keywords live 查询，会计费 |
+| `seo-agents dataforseo domain-rank example.com --json` | DataForSEO domain rank overview live 查询，会计费 |
 
 ## 离线占位命令
 
-这些命令保持“离线占位”：会检测配置字段和来源，但不联网、不调用真实 API、不输出 secret 值、不伪造数据：
+Google、Backlinks、Firecrawl 命令保持“离线占位”：会检测配置字段和来源，但不联网、不调用真实 API、不输出 secret 值、不伪造数据。DataForSEO 默认调用真实 API；只做配置检测时使用 `--offline`：
 
 ```bash
 seo-agents google setup --json
 seo-agents backlinks https://example.com --json
-seo-agents dataforseo serp "keyword" --json
+seo-agents dataforseo serp "keyword" --offline --json
 seo-agents firecrawl crawl https://example.com --json
 ```
 
@@ -43,6 +47,18 @@ seo-agents firecrawl crawl https://example.com --json
 - `firecrawl-api.json`：`api_key`；也检测 `FIRECRAWL_API_KEY` 和 `~/.claude/settings.json` 的 `mcpServers.firecrawl-mcp.env`。
 
 测试隔离时可设置 `SEO_AGENTS_CONFIG_DIR` 和 `SEO_AGENTS_CLAUDE_SETTINGS`。
+
+DataForSEO 真实数据源常用参数：
+
+```bash
+seo-agents dataforseo user-data --json
+seo-agents dataforseo serp "ai seo" --json --location-code 2840 --language-code en --depth 10 --device desktop
+seo-agents dataforseo related-keywords "ai seo" --json --limit 20
+seo-agents dataforseo domain-rank example.com --json
+seo-agents dataforseo setup --offline --json
+```
+
+`--include-raw` 会输出脱敏后的原始 API response；默认 summary 输出不含 API credential。
 
 ## 后续扩展命令
 

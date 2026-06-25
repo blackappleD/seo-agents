@@ -1,12 +1,15 @@
 # seo-agents
 
+[![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-%E5%BD%93%E5%89%8D-brightgreen?style=flat-square)](README.md)
+[![English](https://img.shields.io/badge/English-Click-blue?style=flat-square)](README.en.md)
+
 Agent-first SEO 工具包。它把可被 Codex、Claude Code、Cursor、Cline、Aider 等 harness 读取的 `skills/`、`agents/`，和可测试、可复用的 Python CLI `seo-agents` 放在同一个项目里。
 
 目标很简单：让 Agent 可以做 SEO 分析，但真正执行抓取、解析、评分和报告生成时，依赖确定性的本地 CLI，而不是只靠提示词。
 
 ---
 
-## Why seo-agents
+## 为什么选择 seo-agents
 
 AI Search / GEO 正在成为 SEO 工作流的一部分，但传统 SEO 基础仍然不能丢。`seo-agents` 目前聚焦本地可判断的信号：
 
@@ -17,24 +20,24 @@ AI Search / GEO 正在成为 SEO 工作流的一部分，但传统 SEO 基础仍
 | Content | 内容质量、可引用段落、E-E-A-T 相关页面信号 |
 | Schema | JSON-LD 检测、基础校验、生成建议 |
 | AI Search / GEO | entity schema、llms.txt、robots.txt 中常见 AI crawler 规则、citation-ready text |
-| Vertical SEO | images、hreflang、local、ecommerce |
-| Monitoring | drift baseline、compare、history |
-| External Data | DataForSEO 真实接入；Google、Backlinks、Firecrawl 当前为离线占位 |
+| 垂直 SEO | images、hreflang、local、ecommerce |
+| 监控 | drift baseline、compare、history |
+| 外部数据 | DataForSEO 真实接入；Google、Backlinks、Firecrawl 当前为离线占位 |
 
 不会把未接入的数据源伪装成真实数据。没有配置或尚未实现的 provider 会明确返回“未配置”或“离线占位”。
 
 ---
 
-## Quick Start
+## 快速开始
 
-### Requirements
+### 环境要求
 
 - Python 3.10+
 - Git
-- Optional: Playwright，用于 `render` 的浏览器渲染路径
-- Optional: DataForSEO credentials，用于真实 SERP、related keywords、domain rank 查询
+- 可选：Playwright，用于 `render` 的浏览器渲染路径
+- 可选：DataForSEO credentials，用于真实 SERP、related keywords、domain rank 查询
 
-### Install CLI
+### 安装 CLI
 
 ```bash
 python scripts/install.py --target cli
@@ -53,7 +56,7 @@ seo-agents --help
 seo-agents page https://example.com --json
 ```
 
-### Install Agent Assets
+### 安装 Agent 资源
 
 Codex：
 
@@ -83,11 +86,11 @@ python scripts/install.py --target all
 
 ---
 
-## Commands
+## 命令
 
 所有确定性能力都通过 `seo-agents` 运行。默认输出为人类可读摘要，添加 `--json` 输出机器可读 JSON。
 
-| Command | Status | What It Does |
+| 命令 | 状态 | 用途 |
 |---|---|---|
 | `seo-agents fetch <url> --json` | 已实现 | 带 SSRF 安全校验抓取 URL |
 | `seo-agents render <url> --json` | 已实现 | 按 `never/auto/always` 模式渲染 URL |
@@ -128,7 +131,7 @@ seo-agents dataforseo setup --offline --json
 
 ---
 
-## Architecture
+## 架构
 
 ```text
 seo-agents/
@@ -164,14 +167,14 @@ seo-agents/
 
 两层交付形态：
 
-| Layer | Purpose |
+| 层级 | 用途 |
 |---|---|
-| Agent layer | `AGENTS.md`、`skills/`、`agents/` 负责给 Agent 说明任务路由、语言偏好、安全边界和专家流程 |
-| Deterministic layer | `src/seo_agents/` 和 `seo-agents` CLI 负责真实抓取、解析、分析、评分、artifact 写入和测试 |
+| Agent 层 | `AGENTS.md`、`skills/`、`agents/` 负责给 Agent 说明任务路由、语言偏好、安全边界和专家流程 |
+| 确定性执行层 | `src/seo_agents/` 和 `seo-agents` CLI 负责真实抓取、解析、分析、评分、artifact 写入和测试 |
 
 ---
 
-## Data Storage
+## 数据存储
 
 `audit` 会在目标域名对应目录写入报告 artifact：
 
@@ -197,9 +200,9 @@ seo-agents/
 
 ---
 
-## How It Works
+## 工作原理
 
-### Full Audit Flow
+### 全站审计流程
 
 运行：
 
@@ -217,11 +220,11 @@ seo-agents audit https://example.com --max-pages 20
 6. Synthesis：聚合 findings，计算分类分和健康分。
 7. Report：写入 `audit-data.json`、`FULL-AUDIT-REPORT.md`、`ACTION-PLAN.md` 和分类 findings。
 
-### Scoring Methodology
+### 评分方法
 
 健康分来自分类得分的加权聚合：
 
-| Category | Weight |
+| 分类 | 权重 |
 |---|---:|
 | Technical SEO | 22% |
 | Content Quality | 23% |
@@ -235,50 +238,50 @@ seo-agents audit https://example.com --max-pages 20
 
 ---
 
-## Key Features
+## 核心功能
 
-### SSRF-aware Fetching
+### SSRF 安全抓取
 
 所有用户输入 URL 在抓取前都会进行严格校验，阻止 private、loopback、link-local、metadata endpoint 和混淆 IP 等高风险目标。
 
-### SPA-aware Rendering
+### SPA 渲染降级
 
 `render` 和多数分析命令支持 `--render-mode never|auto|always`。没有浏览器依赖时，optional dependency 不会在 import 阶段中断程序。
 
-### Evidence-based Findings
+### 基于证据的发现项
 
 每个 finding 都带 `evidence`，便于 Agent、人类和 CI 判断问题来源。`--json` 输出可直接进入后续自动化流程。
 
-### GEO Readiness Checks
+### GEO 就绪度检查
 
 `geo` 会检查实体 schema、可引用段落、`llms.txt` / `llms-full.txt`、以及 `robots.txt` 中常见 AI crawler 规则。它只判断本地可观察信号，不声称能替代真实 AI 平台引用数据。
 
-### Drift Monitoring
+### 漂移监控
 
 `drift baseline`、`drift compare`、`drift history` 可追踪 title、meta description、canonical、robots、heading、schema hash、HTML hash 和 status code 变化。
 
-### DataForSEO Integration
+### DataForSEO 接入
 
 `dataforseo` 默认调用真实 API。`user-data` 用于免费凭据和余额验证；`serp`、`related-keywords`、`domain-rank` 可能计费。只做配置检测时必须显式使用 `--offline`。
 
 ---
 
-## Use Cases
+## 使用场景
 
-- **SEO consultants**：快速生成带证据的初步审计和行动计划。
-- **Marketing teams**：持续检查页面改版后的 SEO drift。
-- **Content teams**：发现标题、结构、可引用段落和 E-E-A-T 页面信号缺口。
-- **Developers**：在 CI 或本地脚本里读取 JSON artifact，避免 SEO 检查只停留在人工 checklist。
-- **Agent builders**：把 `skills/` 和 `agents/` 当作 playbook，把 `seo-agents` CLI 当作执行真相来源。
-- **Local / ecommerce sites**：补齐 local、ecommerce、schema、images、hreflang 等垂直基础检查。
+- **SEO 顾问**：快速生成带证据的初步审计和行动计划。
+- **市场团队**：持续检查页面改版后的 SEO drift。
+- **内容团队**：发现标题、结构、可引用段落和 E-E-A-T 页面信号缺口。
+- **开发者**：在 CI 或本地脚本里读取 JSON artifact，避免 SEO 检查只停留在人工 checklist。
+- **Agent 构建者**：把 `skills/` 和 `agents/` 当作 playbook，把 `seo-agents` CLI 当作执行真相来源。
+- **本地和电商站点**：补齐 local、ecommerce、schema、images、hreflang 等垂直基础检查。
 
 ---
 
-## External Data Sources
+## 外部数据源
 
 配置默认读取 `~/.config/seo-agents/`，测试或隔离环境可用 `SEO_AGENTS_CONFIG_DIR` 覆盖配置目录。
 
-| Provider | Config | Current Behavior |
+| Provider | 配置 | 当前行为 |
 |---|---|---|
 | Google | `google-api.json` 或 `GOOGLE_API_KEY`、`GOOGLE_APPLICATION_CREDENTIALS` 等 env | 离线占位，只检测配置字段来源 |
 | Backlinks | `backlinks-api.json` 或 `MOZ_API_KEY`、`BING_WEBMASTER_API_KEY` | 离线占位，只检测配置字段来源 |
@@ -289,7 +292,7 @@ seo-agents audit https://example.com --max-pages 20
 
 ---
 
-## Roadmap Notes
+## 路线图说明
 
 以下能力已有 skill/agent 说明，但当前没有 CLI 入口：`plan`、`cluster`、`sxo`、`programmatic`、`competitor-pages`、`content-brief`、`maps`、`flow`、`image-gen`。
 
@@ -297,7 +300,7 @@ seo-agents audit https://example.com --max-pages 20
 
 ---
 
-## Validation
+## 验证
 
 ```bash
 python scripts/portability_check.py --json
@@ -308,7 +311,7 @@ pytest -q
 
 ---
 
-## Uninstall
+## 卸载
 
 当前没有自动 uninstaller。按安装目标删除对应内容：
 
@@ -319,7 +322,7 @@ pytest -q
 
 ---
 
-## Contributing
+## 参与贡献
 
 欢迎提交改进。请遵循 Conventional Commits，并保持一个 commit 只包含一个功能模块的改动。
 
@@ -331,8 +334,8 @@ python scripts/portability_check.py --json
 
 ---
 
-## License
+## 许可证
 
 MIT License
 
-Built for agent-first SEO workflows.
+为 Agent-first SEO 工作流而构建。

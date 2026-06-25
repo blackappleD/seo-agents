@@ -61,6 +61,18 @@ seo-agents dataforseo user-data --json
 - Claude Code：读取相同 skill 文件；Claude 专用工具名需要映射到当前 harness 的 shell/文件读取能力。
 - Cursor/Cline/Aider：把 `skills/` 当作任务 playbook，把 `src/seo_agents` 当作实现真相来源。
 
+安装入口：
+
+```bash
+python scripts/install.py --target cli
+python scripts/install.py --target codex
+python scripts/install.py --target claude
+python scripts/install.py --target open-agent
+python scripts/install.py --target all
+```
+
+根目录 `install.sh` 和 `install.ps1` 只是薄 wrapper；真实安装逻辑在 `scripts/install.py`。
+
 ## Portability Check
 
 编辑 skill 或命令后运行：

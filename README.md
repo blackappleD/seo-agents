@@ -7,6 +7,8 @@ Agent-first SEO 工具包。它把可被 Codex、Claude Code、Cursor、Cline、
 
 目标很简单：让 Agent 可以做 SEO 分析，但真正执行抓取、解析、评分和报告生成时，依赖确定性的本地 CLI，而不是只靠提示词。
 
+这也是项目的本地 v2 闭环：Agent 负责理解任务和组织报告，`seo-agents` CLI 负责本地抓取、解析、验证、评分和 artifact 输出。
+
 ---
 
 ## 为什么选择 seo-agents

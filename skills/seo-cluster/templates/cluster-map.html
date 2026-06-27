@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>内容集群地图模板</title>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 32px; color: #172033; background: #f6f8fb; }
+    main { max-width: 960px; margin: 0 auto; background: #fff; border: 1px solid #d9e1ec; border-radius: 8px; padding: 28px; }
+    h1 { margin-top: 0; font-size: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    section { border: 1px solid #d9e1ec; border-radius: 8px; padding: 16px; background: #fbfcfe; }
+    code { background: #eef2f7; padding: 2px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>内容集群地图模板</h1>
+    <p>用于整理 pillar page、topic cluster 和 spoke page 的关系。此模板为中文重写版，不包含外部仓库的原始交互代码。</p>
+    <div class="grid">
+      <section><h2>Pillar Page</h2><p>核心主题页：承载主搜索意图、定义、导航和转化入口。</p></section>
+      <section><h2>Cluster</h2><p>主题簇：按搜索意图、用户阶段或产品场景分组。</p></section>
+      <section><h2>Spoke Pages</h2><p>支持页：回答长尾问题，并通过内部链接支撑 pillar page。</p></section>
+    </div>
+    <p>建议字段：<code>keyword</code>、<code>intent</code>、<code>url</code>、<code>status</code>、<code>priority</code>、<code>internal_links</code>。</p>
+  </main>
+</body>
+</html>

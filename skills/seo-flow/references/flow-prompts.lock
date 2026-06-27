@@ -1,0 +1,45 @@
+# FLOW prompt lock
+
+> 由当前仓库内中文 prompt 文件生成，用于发现提示词内容漂移。
+
+64e179f785093272d64a73a832d2fcef737621499215ac3cd463072d926a5a32  skills/seo-flow/references/prompts/find/content-planning-for-topical-relevance-prompt.md
+cbe08dd91835bf42f629c56e5f2a4e86102199882ff1fa17cecfcbe4076dd057  skills/seo-flow/references/prompts/find/content-prioritization-prompt.md
+450bad7b2fdec6ca4f99368cb9c309904ad1b2b080803cc684b1104bab2e74b6  skills/seo-flow/references/prompts/find/keyword-research-prompt.md
+77bba7cc38bc6fb2854bb4bfa1660ed5a8ec3a2f87d7ca766f61be0e99ab3ace  skills/seo-flow/references/prompts/find/keyword-variations-for-topical-relevance-prompt.md
+c6214bc4e8b0a125f3e9ad41c712bc6221a2912f5d8bf16399fb3924fb609e33  skills/seo-flow/references/prompts/find/prompt-audience-avatar.md
+2ebf4ed78922d82846a18672babf3a62ad72efc6006e1bf5d7135e5de25e5f04  skills/seo-flow/references/prompts/leverage/backlink-competition-prompt.md
+febb1e5d1527f5262f673adcdb1353ef46205c34fa5181f49f63e0ac39049cac  skills/seo-flow/references/prompts/local/ai-homepage-rewrite-prompt.md
+dfa766751f99a093b0d8bb1a6b569c82830e6da7a5f253d6b736c2840b0d4388  skills/seo-flow/references/prompts/local/deep-research-prompt.md
+379d39bcde6ede474f3e2cc5fbbaec9c46ad0cf12e810e98398d75af37c55f29  skills/seo-flow/references/prompts/local/gbp-categories-prompt.md
+dffe97f3bc96ced9c69e5e45f2a8773630235e613991f5b55be16ab753dfe03f  skills/seo-flow/references/prompts/local/gbp-description-prompt-1.md
+4191c3f1850543726db12dcfa57041083c1ec0820754efb8d17071f04837105e  skills/seo-flow/references/prompts/local/gbp-description-prompt-2.md
+c6466e0c38068060c9428e03df47bf84854aafca170e14bb021002950d20c753  skills/seo-flow/references/prompts/local/gbp-description-prompt-3.md
+3892286903ec81f3a366ca2837f2aa31f6374ac50dd1f705b9f81b56b8a693d9  skills/seo-flow/references/prompts/local/gbp-services-prompt.md
+eeabb07a7fb471650b847ead06ea507fdc32d173416952f47b5371a806a88b9f  skills/seo-flow/references/prompts/local/prompt-generating-a-meta-description.md
+0c67de3c3ddc6103cac74794db7a83692464e8be648b4f837cb0a13da0ce7758  skills/seo-flow/references/prompts/local/prompt-generating-a-title-tag.md
+4dbfe4c2eb768c2b845a7680ea54f636f6a4c15741db3b407751c1006ca88db3  skills/seo-flow/references/prompts/local/prompt-rewriting-existing-homepage.md
+c56c8d94a2eb61c00d884ea24a02caa18613f105ba071e70033d0657e1602d46  skills/seo-flow/references/prompts/local/prompt-rewriting-existing-service-page.md
+02fe8c02468b63844737e62a3e2ffa3f82df2210146dcb8888c9a1833216fd96  skills/seo-flow/references/prompts/optimize/ai-detector-test-follow-up-prompt.md
+c504f167ebf68f4b817c8df4e21ebc63c81939246b7b1bb2cec8d951a52bd6cf  skills/seo-flow/references/prompts/optimize/ai-supporting-pages-rewrite-prompt.md
+fab945cbae82d023bc9e1321be943635771be19e2dc5dbeeb264f1d08eda0f1c  skills/seo-flow/references/prompts/optimize/basic-prompt.md
+c55855eecceee7a0cbd0e1bddc2b7975e2e19e0a354ce71684f11adac1c6a7f4  skills/seo-flow/references/prompts/optimize/blog-post-outline-prompt.md
+ba8704299fe64ea9d1c5db9e9b3c513fc983c466d762f67d929dede3754fb4a3  skills/seo-flow/references/prompts/optimize/blog-post-writing-prompt.md
+67c09c968e9a45ba63bfec76676f0186e5c69928e9756b98cebe47782f4a11f1  skills/seo-flow/references/prompts/optimize/ctr-audit-prompt.md
+3234f8b9a6579005012e6fb4dc001420ab7009813dc726e29832109521334679  skills/seo-flow/references/prompts/optimize/follow-up-prompt-1.md
+1902572c24ba8e6838f04556f2fad9aec67f79e85c342f68628b325a383960a2  skills/seo-flow/references/prompts/optimize/follow-up-prompt-2.md
+3167efc74f7e472876bc13c21b4a08f28ae49c30bea6a06dbe3d2dd9f2412219  skills/seo-flow/references/prompts/optimize/follow-up-prompt.md
+c4baf186bb9861c83fec06e1cf2f7daef23636847843270c8b249c85ceed1868  skills/seo-flow/references/prompts/optimize/general-optimization-prompt-1.md
+a7574fe9a7a56c9a0577c228ac7207254ca977c625df233049501da30b25e37c  skills/seo-flow/references/prompts/optimize/general-optimization-prompt-2.md
+b2620f830c0e0544a76606a5e7c3e247bbefd5401b348ec2ceb8e469cb90df03  skills/seo-flow/references/prompts/optimize/paa-question-rewording-prompt.md
+6332f0871b0728862951dd9d36c03eeba661fe46604599c05464843c6ee78a9e  skills/seo-flow/references/prompts/optimize/prompt-core-30-content-audit.md
+5ddd841f26f071d80179557a688f877b8adbfeca6c460d30bacbd460594e62d4  skills/seo-flow/references/prompts/optimize/property-content-with-authority-audit-prompt.md
+ff7bb96af5465837f137b03802a5fe0637e15156e885faee1aeee31ad8936c30  skills/seo-flow/references/prompts/optimize/reddit-insights-prompt.md
+3f70dd60e77e6cb74b7a80cb811e2047ff70561045f9c195aaa0fee53b20e347  skills/seo-flow/references/prompts/optimize/schema-prompt-1.md
+b63816e25ea5a68b7dfad5c2aa1793e7083c3574b228272a90bcb52567d6d5b8  skills/seo-flow/references/prompts/optimize/step-1-the-chatgpt-discovery-prompt.md
+117cb7ceb1ca3e1b23efce2a5268ebe545409c5331381a5f5c9fdd87b1c59c80  skills/seo-flow/references/prompts/optimize/step-2-the-follow-up-qualifying-prompt.md
+87fd29a7bbb9c4b69d37d679521a25d592c3027bc58716b5b55d5c7859f6d956  skills/seo-flow/references/prompts/optimize/technical-audit-prompt.md
+2463a4f6ccd4d058c5fcf18e7e2c1254b42ef893b76b39407f2ced0da2884c8a  skills/seo-flow/references/prompts/optimize/visibility-follow-up-prompt.md
+c5f6783328f3a5ea36f5e2315ef42bb93920583e83a7539cdf9e2f0ca1ec9355  skills/seo-flow/references/prompts/optimize/visiblity-prompt.md
+98af339df5a499013a239f864fbeaab14377dbe9dda1c6105b9d3a74e4df0cc9  skills/seo-flow/references/prompts/win/bofu-page-brief-generator.md
+b501bc747d299d543c11ba01fb9c06c4791abb8416def593da7fc89b1cb1b382  skills/seo-flow/references/prompts/win/conversion-audit-prompt.md
+1531891d901a6c0c7460706721192a7ae3ccb19e432a701328416fef2cf7e630  skills/seo-flow/references/prompts/win/dual-surface-content-scorecard.md
